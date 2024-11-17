@@ -53,6 +53,7 @@ app.get("/janken", (req, res) => {
   ) {
     judgement = '負け';
   }
+  total += 1; // 試合数を増やす
  
   const display = {
     your: hand,
@@ -63,5 +64,65 @@ app.get("/janken", (req, res) => {
   }
   res.render( 'janken', display );
 });
+
+app.get("/quiz", (req, res) => {
+  let answer = req.query.answer; // ユーザーの回答
+  let correct = Number(req.query.correct) || 0; // 正解数の初期化または取得
+  let total = Number(req.query.total) || 0; // 回答数の初期化または取得
+
+  // クイズ問題を定義（例: 正しい答えが "2" とする）
+  const question = "世界で一番高い山は？";
+  const choices = ["富士山", "キリマンジャロ", "エベレスト"];
+  const correctAnswer = "エベレスト"; // 正解の答え
+
+  // ユーザーが回答している場合のみ処理
+  if (answer) {
+    total += 1; // 回答数を増やす
+    if (answer === correctAnswer) {
+      correct += 1; // 正解数を増やす
+    }
+  }
+
+  // 表示する結果をオブジェクトに格納
+  const display = {
+    question: question,
+    choices: choices,
+    correctAnswer: correctAnswer,
+    userAnswer: answer,
+    correct: correct,
+    total: total,
+    isCorrect: answer === correctAnswer
+  };
+
+  res.render("quiz", display);
+});
+
+app.get("/calculator", (req, res) => {
+  const num1 = Number(req.query.num1) || 0;
+  const num2 = Number(req.query.num2) || 0;
+  const operator = req.query.operator || "+";
+  let result;
+
+  switch (operator) {
+    case "+":
+      result = num1 + num2;
+      break;
+    case "-":
+      result = num1 - num2;
+      break;
+    case "*":
+      result = num1 * num2;
+      break;
+    case "/":
+      result = num2 !== 0 ? num1 / num2 : "エラー (ゼロ除算)";
+      break;
+    default:
+      result = "無効な演算子";
+  }
+
+  res.render("calculator", { num1, num2, operator, result });
+});
+
+
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

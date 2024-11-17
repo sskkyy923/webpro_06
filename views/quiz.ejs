@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クイズ</title>
+</head>
+<body>
+  <h1>クイズ</h1>
+  <p><%= question %></p>
+
+  <!-- 回答選択フォーム -->
+  <form action="/quiz" method="get">
+    <% choices.forEach(function(choice) { %>
+      <label>
+        <input type="radio" name="answer" value="<%= choice %>"> <%= choice %>
+      </label>
+    <% }) %>
+    <button type="submit">回答する</button>
+  </form>
+
+  <!-- 回答結果の表示 -->
+  <% if (userAnswer) { %>
+    <h2>結果</h2>
+    <p>あなたの答え: <%= userAnswer %></p>
+    <p>判定: <%= isCorrect ? "正解！" : "不正解" %></p>
+  <% } %>
+
+</body>
+</html>

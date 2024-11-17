@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>パチンコ（ミドル機）</title>
+</head>
+<body>
+  <h1>パチンコゲーム</h1>
+  <p>結果: <%= result %></p>
+  <p>現在のモード: <%= mode %></p>
+  <p>モード内のプレイ回数: <%= playCount %></p>
+  <p>トータルプレイ数: <%= totalPlays %></p>
+  <p>このプレイでのポイント: <%= points %></p>
+  <p>現在の合計ポイント: <%= totalPoints %></p>
+
+  <% if (finalResult !== null) { %>
+    <h2>確変終了！最終結果: <%= finalResult %> ポイント</h2>
+  <% } %>
+
+  <form method="get" action="/pachinko">
+    <input type="hidden" name="mode" value="<%= mode %>">
+    <input type="hidden" name="playCount" value="<%= playCount %>">
+    <input type="hidden" name="totalPlays" value="<%= totalPlays %>">
+    <input type="hidden" name="totalPoints" value="<%= totalPoints %>">
+    <button type="submit">プレイする</button>
+  </form>
+</body>
+</html>
