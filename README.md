@@ -15,6 +15,24 @@ views/calculator.ejs | 電卓の開始画面
 ```javascript
 console.log( 'Hello' );
 ```
+```mermaid
+flowchart TD;
+
+start["アプリ起動"]
+taskInput["タスク情報の入力"]
+addTask["タスク追加ボタンを押下"]
+sendToServer["サーバーにデータ送信"]
+updateList["タスク一覧を更新"]
+displayTasks["タスク一覧を表示"]
+deleteTask["タスク削除ボタンを押下"]
+removeFromServer["サーバーでタスク削除"]
+resetIds["IDを再割り振り"]
+refreshList["タスク一覧を更新"]
+
+start --> taskInput --> addTask --> sendToServer --> updateList --> displayTasks
+displayTasks --> deleteTask --> removeFromServer --> resetIds --> refreshList --> displayTasks
+
+```
 
 ## 1./hello1
 ・関数名：app.get("/hello1", callback)

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タスク管理</title>
+    <link rel="stylesheet" href="task.css">
+    <script src="task.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>タスク管理</h1>
+        
+        <!-- タスク追加フォーム -->
+        <div class="form-group">
+            <label for="task-title">タスク名</label>
+            <input type="text" id="task-title" placeholder="タスク名を入力してください">
+        </div>
+        <div class="form-group">
+            <label for="task-content">タスク内容</label>
+            <textarea id="task-content" placeholder="タスクの内容を入力してください"></textarea>
+        </div>
+        <button id="add-task" class="btn btn-add">タスクを追加</button>
+        
+        <!-- タスク一覧取得ボタン -->
+        <button id="get-tasks" class="btn btn-blue">タスク一覧取得</button>
+        
+        <!-- タスク削除フォーム -->
+        <div class="form-group">
+            <label for="task-id">タスクID</label>
+            <input type="text" id="task-id" placeholder="削除するタスクのIDを入力してください">
+        </div>
+        <button id="delete-task" class="btn btn-danger">タスク削除</button>
+        
+        <!-- タスク一覧表示 -->
+        <h2>タスク一覧表示</h2>
+        <div id="task-list"></div>
+    </div>
+</body>
+</html>
